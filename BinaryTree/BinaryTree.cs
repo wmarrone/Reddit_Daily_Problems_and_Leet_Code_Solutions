@@ -24,6 +24,38 @@ namespace BinaryTree
             }
         }
 
+        public void AddNodePrototype(int value)
+        {
+            Node newNode = new Node(value);
+            if (root == null) { root = newNode; }
+            else
+            {
+                Node current = root;
+                Node parent;
+                while (true)
+                {
+                    parent = current;
+                    if (value < current.val)
+                    {
+                        current = current.left;
+                        if(current == null)
+                        {
+                            parent.left = newNode;
+                            return;
+                        }
+                    }
+                    else if(value > current.val)
+                    {
+                        current = current.right;
+                        if(current == null)
+                        {
+                            parent.right = newNode;
+                            return;
+                        }
+                    }
+                }
+            }
+        }
         public void AddNode(int value)
         {
             Node newNode = new Node(value);
@@ -94,13 +126,13 @@ namespace BinaryTree
         {
             BinaryTree bt = new BinaryTree();
 
-            bt.AddNode(7);
-            bt.AddNode(6);
-            bt.AddNode(5);
-            bt.AddNode(4);
-            bt.AddNode(3);
-            bt.AddNode(2);
-            bt.AddNode(1);
+            bt.AddNodePrototype(7);
+            bt.AddNodePrototype(6);
+            bt.AddNodePrototype(5);
+            bt.AddNodePrototype(4);
+            bt.AddNodePrototype(3);
+            bt.AddNodePrototype(2);
+            bt.AddNodePrototype(1);
 
             bt.InOrderTraversal(bt.returnRoot());
             Console.WriteLine();
